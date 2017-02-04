@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="sscore">0</string>
+    <string name="bscore">0</string>
+</resources>

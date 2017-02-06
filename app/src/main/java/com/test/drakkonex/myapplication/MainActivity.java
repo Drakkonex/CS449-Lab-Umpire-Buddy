@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.content.SharedPreferences;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2 = findViewById(R.id.ball_button);
         button2.setOnClickListener(this);
         incBcount();
+
+        SharedPreferences settings = getSharedPreferences("Preferred", 0);
+        tocount = settings.getInt("Total Outs",tocount);
+        incTOCount();
 
     }
     public void incScount(){
@@ -59,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             tocount++;
                             incTOCount();
+
+                            SharedPreferences settings = getSharedPreferences("Preferred", 0);
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putInt("Total Outs",tocount);
+                            editor.commit();
                         }
                     });
                     builder.show();
@@ -94,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         incBcount();
         incScount();
+        incTOCount();
     }
 
 }

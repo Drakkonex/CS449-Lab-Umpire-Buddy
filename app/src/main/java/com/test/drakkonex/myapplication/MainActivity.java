@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public View button1, button2;
-    public int scount = 0, bcount = 0;
+    public int scount = 0, bcount = 0,tocount = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView s = (TextView)findViewById(R.id.bscore);
         s.setText(Integer.toString(bcount));
     }
+    public void incTOCount(){
+        TextView r = (TextView)findViewById(R.id.tscore);
+        r.setText(Integer.toString(tocount));
+    }
 
     @Override
     public void onClick(View v){
@@ -52,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             bcount=0;
                             incBcount();
+
+                            tocount++;
+                            incTOCount();
                         }
                     });
                     builder.show();

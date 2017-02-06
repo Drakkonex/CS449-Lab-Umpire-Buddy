@@ -1,9 +1,12 @@
 package com.test.drakkonex.myapplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.content.SharedPreferences;
@@ -42,6 +45,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void incTOCount(){
         TextView r = (TextView)findViewById(R.id.tscore);
         r.setText(Integer.toString(tocount));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reset:
+                scount = 0;
+                bcount = 0;
+                tocount = 0;
+                incTOCount();
+                incBcount();
+                incScount();
+                return true;
+            case R.id.about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
